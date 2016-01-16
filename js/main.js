@@ -1,7 +1,27 @@
 $(document).ready(initPage);
 
 function initPage()
-{
+{	$('#formRegistro').submit(enviarFormulario);
+
+	Parse.initialize("nykzDU7sm8oK5Y3yw5pzEXQIlAKWaKRml5V3NEC2", "662S5BkSe1S9a7h9fUaybtu0ZWbRViTGOiRZ7Uoi");
+	/*var TestObject = Parse.Object.extend("TestObject");
+	var testObject = new TestObject();
+	testObject.save({foo: "bar"}).then(function(object) {
+  	alert("yay! it worked");
+	});*/ }
+
+function enviarFormulario(){
+        var cliente=Parse.Object.extend("cliente");
+        var instancia=new cliente();
+        instancia.save({
+            /*nombre:"lala",apellido:"lalrala"  */
+            nombre:('#nombre').val(),apellido:('#apellido').val() 
+        }).then(function(){
+            alert('Registro guardado')
+        })
+    }
+
+func
 	var opciones ={
 		rules:{
 			nombre:"required",
@@ -14,6 +34,8 @@ function initPage()
 				required:true,
 				minlength:6,
 				maxlength:12
+	$("#myForm").validate(opciones);
+}
 			}
 		},
 		messages:{
@@ -39,6 +61,3 @@ function initPage()
 		}
 
 	};
-
-	$("#myForm").validate(opciones);
-}
